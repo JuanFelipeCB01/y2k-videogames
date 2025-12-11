@@ -1,22 +1,18 @@
 import { useEffect, useState } from 'react'
 
 export default function App() {
-
-  const API_KEY = "3192385a-b25d-4fba-befc-876b198b7d63";
-  const BASE_URL = "https://retro.gg/api"
-
   const [games, setGames] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
   const getGames = async () => {
     try {
-      const res  = await fetch(`${BASE_URL}/search/year/1993?key=${API_KEY}`);
+      const res  = await fetch(`http://localhost:5174/api/games`);
       if (!res.ok) {
         throw new Error('Getting games failed');
       }
       const data = await res.json();
-      setGames(data.results || []);
+      setGames(data || []);
 
     } catch (error) {
       console.error("Getting games failed");
@@ -33,19 +29,31 @@ export default function App() {
     
     getGames();
 
+    console.log("games: ", games)
   }, [])
   
   return (
-    // <div>
-    //   <h1>Y2K GAMES</h1>
-    //   {loading  && <div>Loading games...</div>}
-    //   {error && <div>Error: {error}</div>}
-    //   {!games.length && !loading && !error && (
-    //     <div>No games were found</div>
-    //   )}
-    // </div>
     <div>
       <h1>Y2K GAMES</h1>
+
+      {/* Loading */}
+      { loading && <div>Loading games...</div> }
+
+      {/* Error */}
+      { error && <div>Error: {error}</div>}
+
+      {/* No hay juegos */}
+      {!loading && !error && !games.length && (
+        <div>No hay juegos disponibles</div>
+      )}
+
+      {!loading && !error && games.length > 0 && (
+        <div>
+          {games.map((game) => (
+            <div key={game.id}>{game.name}</div>
+          ))}
+        </div>
+      )}
     </div>
   )
 }
