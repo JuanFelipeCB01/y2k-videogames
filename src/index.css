@@ -1,13 +1,15 @@
 @import 'tailwindcss';
 
-*{
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
+@font-face {
+  font-family: 'Plank';
+  src: url('./assets/fonts/PLANK___.TTF') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+};
 
-body {
-  font-family: sans-serif;
-  background: #111;
-  color: #fff;
-}
+@font-face {
+  font-family: 'Nuls';
+  src: url('./assets/fonts/nulshock\ bd.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+};
