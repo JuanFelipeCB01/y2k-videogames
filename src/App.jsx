@@ -34,7 +34,7 @@ export default function App() {
   
   return (
     <div>
-      <h1>Y2K GAMES</h1>
+      <h1 className="text-4xl font-bold text-pink-500 bg-black">Y2K GAMES</h1>
 
       {/* Loading */}
       { loading && <div>Loading games...</div> }
