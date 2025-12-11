@@ -1,5 +1,4 @@
 import { useEffect, useState } from 'react'
-import React from 'react'
 
 export default function App() {
   const [games, setGames] = useState([]);
@@ -8,8 +7,13 @@ export default function App() {
 
   const getGames = async () => {
     try {
-      const  data  = await axios.get(`${BASE_URL}search/year/1993?key${API_KEY}`);
-      setGames(data.results);
+      const res  = await fetch(`http://localhost:5174/api/games`);
+      if (!res.ok) {
+        throw new Error('Getting games failed');
+      }
+      const data = await res.json();
+      setGames(data || []);
+
     } catch (error) {
       console.error("Getting games failed");
       setError(error.message);
@@ -29,8 +33,11 @@ export default function App() {
   }, [])
   
   return (
-    <div>
-      <h1 className="text-4xl font-bold text-pink-500 bg-black">Y2K GAMES</h1>
+    <div className='min-h-screen bg-slate-950 text-slate-100 font-sans'>
+      <h1 className="text-4xl md:text-5xl font-extrabold text-fuchsia-400 text-center tracking-[0.2em]">Y2K GAMES</h1>
+      <p className="text-center text-sm text-slate-400 mt-2">
+        Retro vibes · PS2 · PSP · Survival Horror
+      </p>
 
       {/* Loading */}
       { loading && <div>Loading games...</div> }
