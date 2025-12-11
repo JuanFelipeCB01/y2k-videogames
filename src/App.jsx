@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import React from 'react'
+import axios from 'axios';
 
 export default function App() {
 
@@ -12,7 +12,7 @@ export default function App() {
 
   const getGames = async () => {
     try {
-      const  data  = await axios.get(`${BASE_URL}search/year/1993?key${API_KEY}`);
+      const  data  = await axios.get(`${BASE_URL}search/year/1993?key=${API_KEY}`);
       setGames(data.results);
     } catch (error) {
       console.error("Getting games failed");
