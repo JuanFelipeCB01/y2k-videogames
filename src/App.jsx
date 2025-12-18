@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
 import NavBar from './components/NavBar';
+import Header from './components/Header';
 
 export default function App() {
   const [games, setGames] = useState([]);
@@ -34,12 +35,7 @@ export default function App() {
 
   return (
     <div className='min-h-screen bg-slate-100 text-black font-'>
-      <h1 className="text-4xl bg-slate-100 md:text-5xl font-[Plank] text-black text-center tracking-[0.2em] pt-8 pb-8">Y2K GAMES</h1>
-      {/* <p className="text-center text-sm text-slate-100 py-2 font-[Nuls]">
-        Retro · PS2 · PSP · Survival Horror
-      </p> */}
-
-      <NavBar></NavBar>
+      <Header></Header>
 
       <div className="max-w-5xl mx-auto px-4 py-8">
         {/* Loading */}
@@ -61,20 +57,20 @@ export default function App() {
             {games.map((game) => (
               <div
                 key={game.id}
-                className="rounded-1xl border border-slate-800 bg-slate-900/50 p-4 shadow-sm hover:border-cyan-500/60 hover:shadow-cyan-500/20 transition"
+                className="rounded-1xl border border-slate-800 bg-black p-4 shadow-sm hover:border-cyan-500/60 hover:shadow-cyan-500/20 transition"
               >
-                <img src={game.headerImage}></img>
+                <img className='border border-slate-100 ' src={game.headerImage}></img>
                 <h2 className="text-sm font-semibold text-cyan-300 uppercase">
                   {game.name}
                 </h2>
-                <p className="mt-1 text-xs text-neutral-900">
+                <p className="mt-1 text-xs text-neutral-400">
                   Era: <span className="text-slate-200">{game.era}</span>
                 </p>
-                <p className="text-xs text-neutral-900">
+                <p className="text-xs text-neutral-400">
                   Plataforma: <span className="text-slate-200">{game.originalPlatform}</span>
                 </p>
                 {game.year && (
-                  <p className="text-xs text-neutral-900">
+                  <p className="text-xs text-neutral-400">
                     Año: <span className="text-slate-200">{game.year}</span>
                   </p>
                 )}
